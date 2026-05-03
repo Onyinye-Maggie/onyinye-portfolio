@@ -1,0 +1,139 @@
+.experience {
+  padding: 6rem 2rem;
+  border-top: 0.5px solid var(--border);
+}
+
+.experience-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.experience-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  border: 0.5px solid var(--border);
+}
+
+.experience-tabs {
+  border-right: 0.5px solid var(--border);
+}
+
+.experience-tab {
+  width: 100%;
+  text-align: left;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 0.5px solid var(--border);
+  border-left: 2px solid transparent;
+  background: transparent;
+  cursor: crosshair;
+  transition: all 0.2s;
+}
+
+.experience-tab:hover {
+  background: var(--bg2);
+}
+
+.experience-tab.active {
+  background: rgba(232, 93, 58, 0.08);
+  border-left: 2px solid var(--accent);
+}
+
+.experience-tab-period {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.3rem;
+}
+
+.experience-tab-company {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: -0.01em;
+}
+
+.experience-tab.active .experience-tab-company {
+  color: var(--text);
+}
+
+.experience-content {
+  padding: 2rem;
+}
+
+.experience-type {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.experience-role {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.experience-company {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 1.75rem;
+}
+
+.experience-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.experience-bullet {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.experience-bullet-arrow {
+  color: var(--accent);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.experience-footer {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  border: 0.5px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.experience-footer-label {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
+}
+
+.experience-footer-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.experience-footer-mono {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
