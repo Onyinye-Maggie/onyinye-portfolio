@@ -51,11 +51,11 @@
 
 .hero-tag {
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: var(--accent);
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -72,10 +72,10 @@
 }
 
 .hero-heading {
-  font-size: clamp(3.5rem, 9vw, 7.5rem);
+  font-size: clamp(3.8rem, 9vw, 8rem);
   font-weight: 800;
-  line-height: 0.92;
-  letter-spacing: -0.04em;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
   margin-bottom: 2rem;
   opacity: 0;
   transform: translateY(20px);

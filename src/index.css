@@ -39,10 +39,24 @@ body {
   color: var(--text);
   font-family: var(--display);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   cursor: crosshair;
   line-height: 1.6;
   letter-spacing: 0.01em;
+  font-size: 16px;
   transition: background 0.3s ease, color 0.3s ease;
+}
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+p {
+  line-height: 1.8;
+  color: var(--text-muted);
 }
 
 a { color: inherit; text-decoration: none; }
@@ -80,6 +94,20 @@ button { cursor: crosshair; font-family: var(--display); border: none; backgroun
   z-index: 0;
 }
 
+.nav-desktop {
+  display: flex;
+}
+
+.nav-mobile {
+  display: none;
+}
+
 @media (max-width: 768px) {
-  body { cursor: default; }
+  .nav-desktop {
+    display: none;
+  }
+
+  .nav-mobile {
+    display: flex;
+  }
 }
