@@ -12,21 +12,35 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: 
+  background-image:
     linear-gradient(var(--border) 1px, transparent 1px),
     linear-gradient(90deg, var(--border) 1px, transparent 1px);
   background-size: 60px 60px;
+  transition: opacity 0.3s ease;
 }
 
 .hero-glow {
   position: absolute;
   top: 20%;
   right: -5%;
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(232,93,58,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
   z-index: 0;
+  animation: floatGlow 6s ease-in-out infinite;
+}
+
+.hero-glow-2 {
+  position: absolute;
+  bottom: 10%;
+  left: -5%;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%);
+  z-index: 0;
+  animation: floatGlow 8s ease-in-out infinite reverse;
 }
 
 .hero-content {
@@ -58,7 +72,7 @@
 }
 
 .hero-heading {
-  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-size: clamp(3.5rem, 9vw, 7.5rem);
   font-weight: 800;
   line-height: 0.92;
   letter-spacing: -0.04em;
@@ -68,8 +82,11 @@
   transition: all 0.7s ease 0.2s;
 }
 
-.hero-heading .accent {
-  color: var(--accent);
+.hero-heading .gradient-text {
+  background: linear-gradient(135deg, var(--accent) 0%, #60a5fa 50%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .hero-bio {
@@ -84,6 +101,7 @@
   transition: all 0.7s ease 0.35s;
   letter-spacing: 0.02em;
 }
+
 .hero-buttons {
   display: flex;
   gap: 1rem;
@@ -94,7 +112,7 @@
 }
 
 .hero-btn-primary {
-  padding: 0.85rem 2rem;
+  padding: 0.9rem 2.2rem;
   background: var(--accent);
   color: #fff;
   font-family: var(--mono);
@@ -104,14 +122,18 @@
   font-weight: 500;
   border: none;
   cursor: crosshair;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .hero-btn-primary:hover {
-  opacity: 0.85;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.35);
 }
 
 .hero-btn-secondary {
-  padding: 0.85rem 2rem;
+  padding: 0.9rem 2.2rem;
   border: 0.5px solid var(--border-hover);
   font-family: var(--mono);
   font-size: 0.72rem;
@@ -120,20 +142,53 @@
   color: var(--text-muted);
   display: inline-flex;
   align-items: center;
+  transition: all 0.2s ease;
 }
 
 .hero-btn-secondary:hover {
   border-color: var(--accent);
   color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 4rem;
+  opacity: 0;
+  transition: all 0.7s ease 0.65s;
+  flex-wrap: wrap;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.hero-stat-number {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.hero-stat-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .hero-available {
-  margin-top: 4rem;
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  margin-top: 1.5rem;
   opacity: 0;
-  transition: all 0.7s ease 0.65s;
+  transition: all 0.7s ease 0.75s;
 }
 
 .hero-available .dot {
@@ -184,6 +239,7 @@
 .visible .hero-heading,
 .visible .hero-bio,
 .visible .hero-buttons,
+.visible .hero-stats,
 .visible .hero-available {
   opacity: 1;
   transform: translateY(0);
@@ -204,6 +260,12 @@
   51% { transform: scaleY(1); transform-origin: bottom; }
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
+
+@keyframes floatGlow {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
 @media (max-width: 768px) {
   .hero {
     padding: 6rem 1.25rem 3rem;
@@ -214,6 +276,10 @@
     height: 250px;
     top: 10%;
     right: -10%;
+  }
+
+  .hero-glow-2 {
+    display: none;
   }
 
   .hero-bio {
@@ -231,7 +297,12 @@
     justify-content: center;
   }
 
-  .hero-available {
+  .hero-stats {
+    gap: 1.5rem;
     margin-top: 2.5rem;
+  }
+
+  .hero-stat-number {
+    font-size: 1.4rem;
   }
 }

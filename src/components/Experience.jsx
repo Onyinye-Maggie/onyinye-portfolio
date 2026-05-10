@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { experience } from '../data/portfolio';
+import useScrollReveal from './useScrollReveal';
 import './Experience.css';
 
 export default function Experience() {
@@ -7,24 +8,27 @@ export default function Experience() {
   var active = state[0];
   var setActive = state[1];
 
+  var reveal = useScrollReveal(0.1);
+  var sectionRef = reveal[0];
+  var revealed = reveal[1];
+
   var current = experience[active];
 
   return (
-    <section id="experience" className="experience">
+    <section id="experience" className="experience" ref={sectionRef} style={{ position: 'relative' }}>
+      <div className="section-watermark">04</div>
       <div className="experience-inner">
 
-        <div className="section-label">
+        <div className={'section-label reveal' + (revealed ? ' visible' : '')}>
           <span>04 / Experience</span>
         </div>
 
-        <h2 className="section-heading">
-          Where I've
-          <br />
+        <h2 className={'section-heading reveal reveal-delay-1' + (revealed ? ' visible' : '')}>
+          Where I've<br />
           <span className="accent">Been</span>
         </h2>
 
-        <div className="experience-layout">
-
+        <div className={'experience-layout reveal reveal-delay-2' + (revealed ? ' visible' : '')}>
           <div className="experience-tabs">
             {experience.map(function(exp, i) {
               return (
@@ -44,7 +48,6 @@ export default function Experience() {
             <div className="experience-type">{current.type}</div>
             <h3 className="experience-role">{current.role}</h3>
             <div className="experience-company">{current.company}</div>
-
             <ul className="experience-bullets">
               {current.bullets.map(function(bullet, i) {
                 return (
@@ -56,7 +59,6 @@ export default function Experience() {
               })}
             </ul>
           </div>
-
         </div>
 
         <div className="experience-footer">

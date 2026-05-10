@@ -1,5 +1,6 @@
 .projects {
   padding: 6rem 2rem;
+  position: relative;
 }
 
 .projects-inner {
@@ -23,7 +24,7 @@
 }
 
 .section-label::after {
-  content: '';
+  content: " ";
   flex: 1;
   height: 0.5px;
   background: var(--border);
@@ -44,25 +45,34 @@
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  border: 0.5px solid var(--border);
+  gap: 1.25rem;
 }
 
 .project-card {
   padding: 2rem 1.75rem;
-  border-bottom: 0.5px solid var(--border);
   position: relative;
   overflow: hidden;
-  transition: background 0.25s ease;
+  transition: all 0.3s ease;
   cursor: default;
-}
-
-.project-card:nth-child(odd) {
-  border-right: 0.5px solid var(--border);
+  background: var(--bg2);
+  border: 0.5px solid var(--border);
+  border-top: 3px solid transparent;
 }
 
 .project-card:hover {
-  background: var(--bg2);
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  border-top-color: var(--accent);
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.12);
 }
+
+.project-card:nth-child(1) { border-top-color: #3b82f6; }
+.project-card:nth-child(2) { border-top-color: #8b5cf6; }
+.project-card:nth-child(3) { border-top-color: #10b981; }
+.project-card:nth-child(4) { border-top-color: #f59e0b; }
+.project-card:nth-child(5) { border-top-color: #ef4444; }
+.project-card:nth-child(6) { border-top-color: #ec4899; }
+.project-card:nth-child(7) { border-top-color: #14b8a6; }
 
 .project-badge {
   position: absolute;
@@ -75,6 +85,7 @@
   text-transform: uppercase;
   border: 0.5px solid var(--accent);
   padding: 0.2rem 0.5rem;
+  background: var(--accent-dim);
 }
 
 .project-num {
@@ -86,11 +97,12 @@
 }
 
 .project-name {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   margin-bottom: 0.75rem;
   transition: color 0.25s;
+  color: var(--text);
 }
 
 .project-card:hover .project-name {
@@ -120,6 +132,12 @@
   border: 0.5px solid var(--border);
   padding: 0.2rem 0.55rem;
   letter-spacing: 0.05em;
+  transition: all 0.2s;
+}
+
+.project-card:hover .tech-tag {
+  border-color: var(--accent-dim);
+  color: var(--text-muted);
 }
 
 .project-links {
@@ -157,6 +175,19 @@
   font-size: 0.68rem;
   color: var(--text-dim);
   letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.project-wip::before {
+  content: " ";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f59e0b;
+  display: inline-block;
+  box-shadow: 0 0 6px #f59e0b;
 }
 
 .projects-show-more {
@@ -179,7 +210,9 @@
 .show-more-btn:hover {
   border-color: var(--accent);
   color: var(--accent);
+  transform: translateY(-2px);
 }
+
 @media (max-width: 768px) {
   .projects {
     padding: 4rem 1.25rem;
@@ -187,13 +220,5 @@
 
   .projects-grid {
     grid-template-columns: 1fr;
-  }
-
-  .project-card:nth-child(odd) {
-    border-right: none;
-  }
-
-  .project-card {
-    border-right: none;
   }
 }

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import useScrollReveal from './useScrollReveal';
 import './Skills.css';
 
 var techStack = [
@@ -20,6 +21,10 @@ export default function Skills() {
   var animated = state[0];
   var setAnimated = state[1];
 
+  var reveal = useScrollReveal(0.1);
+  var revealRef = reveal[0];
+  var revealed = reveal[1];
+
   useEffect(function() {
     var observer = new IntersectionObserver(
       function(entries) {
@@ -34,22 +39,20 @@ export default function Skills() {
       observer.observe(sectionRef.current);
     }
 
-    return function() {
-      observer.disconnect();
-    };
+    return function() { observer.disconnect(); };
   }, [setAnimated]);
 
   return (
-    <section id="skills" className="skills" ref={sectionRef}>
-      <div className="skills-inner">
+    <section id="skills" className="skills" ref={sectionRef} style={{ position: 'relative' }}>
+      <div className="section-watermark">03</div>
+      <div className="skills-inner" ref={revealRef}>
 
-        <div className="section-label">
+        <div className={'section-label reveal' + (revealed ? ' visible' : '')}>
           <span>03 / Skills</span>
         </div>
 
-        <h2 className="section-heading">
-          Tech
-          <br />
+        <h2 className={'section-heading reveal reveal-delay-1' + (revealed ? ' visible' : '')}>
+          Tech<br />
           <span className="accent">Stack</span>
         </h2>
 
