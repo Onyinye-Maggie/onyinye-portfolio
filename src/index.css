@@ -28,9 +28,16 @@ body {
   font-family: var(--display);
   -webkit-font-smoothing: antialiased;
   cursor: crosshair;
+  line-height: 1.6;        
+  letter-spacing: 0.01em;  
 }
 
 a { color: inherit; text-decoration: none; }
 button { cursor: crosshair; font-family: var(--display); border: none; background: none; }
 
 ::selection { background: var(--accent); color: #fff; }
+@media (max-width: 768px) {
+  body {
+    cursor: default;
+  }
+}

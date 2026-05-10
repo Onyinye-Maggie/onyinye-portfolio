@@ -99,10 +99,11 @@
 
 .project-desc {
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   color: var(--text-muted);
-  line-height: 1.8;
+  line-height: 1.9;
   margin-bottom: 1.25rem;
+  letter-spacing: 0.01em;
 }
 
 .project-tech {
@@ -178,4 +179,21 @@
 .show-more-btn:hover {
   border-color: var(--accent);
   color: var(--accent);
+}
+@media (max-width: 768px) {
+  .projects {
+    padding: 4rem 1.25rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card:nth-child(odd) {
+    border-right: none;
+  }
+
+  .project-card {
+    border-right: none;
+  }
 }

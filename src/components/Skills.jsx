@@ -1,14 +1,46 @@
-import { skills } from '../data/portfolio';
+import { useEffect, useRef, useState } from 'react';
 import './Skills.css';
 
-var categories = [
-  { label: 'Core Stack', key: 'core', labelClass: 'skills-category-label', dotClass: 'skill-dot', itemClass: 'skill-item' },
-  { label: 'Tools and Libraries', key: 'tools', labelClass: 'skills-category-label muted', dotClass: 'skill-dot dim', itemClass: 'skill-item' },
-  { label: 'Design', key: 'design', labelClass: 'skills-category-label muted', dotClass: 'skill-dot dim', itemClass: 'skill-item' },
+var techStack = [
+  { name: 'HTML5', percent: 75 },
+  { name: 'CSS3', percent: 70 },
+  { name: 'CSS Variables', percent: 70 },
+  { name: 'JavaScript ES6+', percent: 60 },
+  { name: 'React.js', percent: 65 },
+  { name: 'Git & GitHub', percent: 65 },
+  { name: 'React Router v6', percent: 60 },
+  { name: 'Axios / REST APIs', percent: 60 },
+  { name: 'Tailwind CSS', percent: 55 },
+  { name: 'Context API', percent: 55 },
 ];
+
 export default function Skills() {
+  var sectionRef = useRef(null);
+  var state = useState(false);
+  var animated = state[0];
+  var setAnimated = state[1];
+
+  useEffect(function() {
+    var observer = new IntersectionObserver(
+      function(entries) {
+        if (entries[0].isIntersecting) {
+          setAnimated(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return function() {
+      observer.disconnect();
+    };
+  }, [setAnimated]);
+
   return (
-    <section id="skills" className="skills">
+    <section id="skills" className="skills" ref={sectionRef}>
       <div className="skills-inner">
 
         <div className="section-label">
@@ -16,27 +48,23 @@ export default function Skills() {
         </div>
 
         <h2 className="section-heading">
-          What I
+          Tech
           <br />
-          <span className="accent">Work With</span>
+          <span className="accent">Stack</span>
         </h2>
 
-        <div className="skills-grid">
-          {categories.map(function(cat) {
+        <div className="skills-chart">
+          {techStack.map(function(skill) {
             return (
-              <div key={cat.key} className="skills-category">
-
-                <div className={cat.labelClass}>{cat.label}</div>
-
-                {skills[cat.key].map(function(skill) {
-                  return (
-                    <div key={skill} className={cat.itemClass}>
-                      <span className={cat.dotClass} />
-                      {skill}
-                    </div>
-                  );
-                })}
-
+              <div key={skill.name} className="skill-row">
+                <div className="skill-name">{skill.name}</div>
+                <div className="skill-bar-track">
+                  <div
+                    className={animated ? 'skill-bar-fill animate' : 'skill-bar-fill'}
+                    style={{ '--target-width': skill.percent + '%' }}
+                  />
+                </div>
+                <div className="skill-percent">{skill.percent}%</div>
               </div>
             );
           })}

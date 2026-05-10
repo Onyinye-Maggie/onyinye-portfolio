@@ -9,61 +9,73 @@
   margin: 0 auto;
 }
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-}
-
-.skills-category {
+.skills-chart {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1.25rem;
 }
 
-.skills-category-label {
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  color: var(--accent);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding-bottom: 0.75rem;
-  border-bottom: 0.5px solid var(--accent);
-  margin-bottom: 0.25rem;
-}
-
-.skills-category-label.muted {
-  color: var(--text-muted);
-  border-bottom-color: var(--border);
-}
-
-.skills-category-label.dim {
-  color: var(--text-dim);
-  border-bottom-color: var(--border);
-}
-
-.skill-item {
-  display: flex;
+.skill-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 40px;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
+}
+
+.skill-name {
   font-family: var(--mono);
-  font-size: 0.8rem;
-  color: var(--text);
-  letter-spacing: 0.02em;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-align: right;
 }
 
-.skill-item.dim {
-  color: var(--text-dim);
-}
-
-.skill-dot {
-  width: 4px;
+.skill-bar-track {
   height: 4px;
-  background: var(--accent);
-  display: inline-block;
-  flex-shrink: 0;
+  background: var(--border);
+  border-radius: 0;
+  overflow: hidden;
 }
 
-.skill-dot.dim {
-  background: var(--text-dim);
+.skill-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-bar-fill.animate {
+  width: var(--target-width);
+}
+
+.skill-percent {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 600px) {
+  .skill-row {
+    grid-template-columns: 110px 1fr 36px;
+    gap: 0.6rem;
+  }
+
+  .skill-name {
+    font-size: 0.68rem;
+  }
+}
+@media (max-width: 768px) {
+  .skills {
+    padding: 4rem 1.25rem;
+  }
+
+  .skill-row {
+    grid-template-columns: 100px 1fr 36px;
+    gap: 0.5rem;
+  }
+
+  .skill-name {
+    font-size: 0.65rem;
+  }
 }

@@ -74,16 +74,16 @@
 
 .hero-bio {
   font-family: var(--mono);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
-  line-height: 1.9;
-  max-width: 480px;
+  line-height: 2;
+  max-width: 500px;
   margin-bottom: 3rem;
   opacity: 0;
   transform: translateY(16px);
   transition: all 0.7s ease 0.35s;
+  letter-spacing: 0.02em;
 }
-
 .hero-buttons {
   display: flex;
   gap: 1rem;
@@ -203,4 +203,35 @@
   50% { transform: scaleY(1); transform-origin: top; }
   51% { transform: scaleY(1); transform-origin: bottom; }
   100% { transform: scaleY(0); transform-origin: bottom; }
+}
+@media (max-width: 768px) {
+  .hero {
+    padding: 6rem 1.25rem 3rem;
+  }
+
+  .hero-glow {
+    width: 250px;
+    height: 250px;
+    top: 10%;
+    right: -10%;
+  }
+
+  .hero-bio {
+    font-size: 0.8rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .hero-btn-primary,
+  .hero-btn-secondary {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .hero-available {
+    margin-top: 2.5rem;
+  }
 }
