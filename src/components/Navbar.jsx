@@ -17,6 +17,7 @@ export default function Navbar() {
   var mobileState = useState(false);
   var isMobile = mobileState[0];
   var setIsMobile = mobileState[1];
+console.log('window width:', window.innerWidth, 'isMobile:', isMobile);
 
   useEffect(function() {
     var onScroll = function() { setScrolled(window.scrollY > 40); };
