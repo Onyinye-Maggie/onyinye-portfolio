@@ -14,10 +14,23 @@ export default function Navbar() {
   var menuOpen = menuState[0];
   var setMenuOpen = menuState[1];
 
+  var mobileState = useState(false);
+  var isMobile = mobileState[0];
+  var setIsMobile = mobileState[1];
+
   useEffect(function() {
     var onScroll = function() { setScrolled(window.scrollY > 40); };
     window.addEventListener('scroll', onScroll);
     return function() { window.removeEventListener('scroll', onScroll); };
+  }, []);
+
+  useEffect(function() {
+    var checkMobile = function() {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return function() { window.removeEventListener('resize', checkMobile); };
   }, []);
 
   var toggleTheme = function() {
@@ -80,11 +93,6 @@ export default function Navbar() {
     transition: 'all 0.2s',
   };
 
-  var hamburgerStyle = {
-    display: 'flex', flexDirection: 'column',
-    gap: '5px', padding: '4px', cursor: 'crosshair',
-  };
-
   var barStyle = {
     width: '22px', height: '1.5px',
     background: 'var(--text)', display: 'block',
@@ -95,7 +103,6 @@ export default function Navbar() {
     display: menuOpen ? 'flex' : 'none',
     flexDirection: 'column',
     padding: '1rem 2rem 1.5rem',
-    gap: '0',
     borderTop: '0.5px solid var(--border)',
   };
 
@@ -105,78 +112,77 @@ export default function Navbar() {
     textTransform: 'uppercase', padding: '0.9rem 0',
     borderBottom: '0.5px solid var(--border)',
     textAlign: 'left', transition: 'color 0.2s',
-  };
-
-  var mobileBottomStyle = {
-    display: 'flex', gap: '1rem',
-    marginTop: '1rem', alignItems: 'center',
+    background: 'none',
   };
 
   return (
     <nav style={navStyle}>
-
       <div style={topRowStyle}>
 
         <span style={logoStyle}>
           OE<span style={{ color: 'var(--accent)' }}>.</span>
         </span>
 
-        <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }} className="nav-desktop">
+        {isMobile ? (
+          <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+            <button onClick={toggleTheme} style={toggleStyle}>
+              {isLight ? 'Dark' : 'Light'}
+            </button>
+            <button
+              onClick={function() { setMenuOpen(!menuOpen); }}
+              style={{ display: 'flex', flexDirection: 'column', gap: '5px', padding: '4px', background: 'none', border: 'none', cursor: 'pointer' }}
+            >
+              <span style={barStyle} />
+              <span style={barStyle} />
+              <span style={barStyle} />
+            </button>
+          </div>
+        ) : (
+          <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+            {links.map(function(link) {
+              return (
+                <button
+                  key={link}
+                  onClick={function() { handleNav(link); }}
+                  style={linkStyle}
+                  onMouseEnter={function(e) { e.target.style.color = 'var(--accent)'; }}
+                  onMouseLeave={function(e) { e.target.style.color = 'var(--text-muted)'; }}
+                >
+                  {link}
+                </button>
+              );
+            })}
+            <button onClick={toggleTheme} style={toggleStyle}>
+              {isLight ? 'Dark' : 'Light'}
+            </button>
+            <a href={'mailto:' + meta.email} style={hireStyle}>
+              Hire Me
+            </a>
+          </div>
+        )}
+
+      </div>
+
+      {isMobile ? (
+        <div style={mobileMenuStyle}>
           {links.map(function(link) {
             return (
               <button
                 key={link}
                 onClick={function() { handleNav(link); }}
-                style={linkStyle}
-                onMouseEnter={function(e) { e.target.style.color = 'var(--accent)'; }}
-                onMouseLeave={function(e) { e.target.style.color = 'var(--text-muted)'; }}
+                style={mobileLinkStyle}
               >
                 {link}
               </button>
             );
           })}
-          <button onClick={toggleTheme} style={toggleStyle}>
-            {isLight ? 'Dark' : 'Light'}
-          </button>
-          <a href={'mailto:' + meta.email} style={hireStyle}>
-            Hire Me
-          </a>
+          <div style={{ marginTop: '1rem' }}>
+            <a href={'mailto:' + meta.email} style={hireStyle}>
+              Hire Me
+            </a>
+          </div>
         </div>
-
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }} className="nav-mobile">
-          <button onClick={toggleTheme} style={toggleStyle}>
-            {isLight ? 'Dark' : 'Light'}
-          </button>
-          <button
-            onClick={function() { setMenuOpen(!menuOpen); }}
-            style={hamburgerStyle}
-          >
-            <span style={barStyle} />
-            <span style={barStyle} />
-            <span style={barStyle} />
-          </button>
-        </div>
-
-      </div>
-
-      <div style={mobileMenuStyle}>
-        {links.map(function(link) {
-          return (
-            <button
-              key={link}
-              onClick={function() { handleNav(link); }}
-              style={mobileLinkStyle}
-            >
-              {link}
-            </button>
-          );
-        })}
-        <div style={mobileBottomStyle}>
-          <a href={'mailto:' + meta.email} style={hireStyle}>
-            Hire Me
-          </a>
-        </div>
-      </div>
+      ) : null}
 
     </nav>
   );
