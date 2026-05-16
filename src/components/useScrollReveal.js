@@ -23,7 +23,7 @@ export default function useScrollReveal(threshold) {
     return function() {
       observer.disconnect();
     };
-  }, [threshold]);
+  }, [threshold, setRevealed]);
 
   return [ref, revealed];
 }

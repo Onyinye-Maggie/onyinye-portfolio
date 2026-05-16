@@ -10,7 +10,7 @@ export default function Hero() {
   useEffect(function() {
     var t = setTimeout(function() { setVisible(true); }, 100);
     return function() { clearTimeout(t); };
-  }, []);
+  }, [setVisible]);
 
   var scrollTo = function(id) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -36,7 +36,7 @@ export default function Hero() {
         </h1>
 
         <p className="hero-bio">
-          I build responsive, production-grade web apps with React,
+          I build responsive, production-grade web apps with React, 
           focused on clean code, accessible UI, and experiences that actually work.
         </p>
 

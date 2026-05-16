@@ -19,7 +19,7 @@ export default function Navbar() {
     var onScroll = function() { setScrolled(window.scrollY > 40); };
     window.addEventListener('scroll', onScroll);
     return function() { window.removeEventListener('scroll', onScroll); };
-  }, []);
+  }, [setScrolled]);
 
   var toggleTheme = function() {
     var newIsLight = !isLight;
