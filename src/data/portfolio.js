@@ -9,7 +9,16 @@ export const projects = [
     featured: true,
   },
   {
-    id: "02",
+  id: "02",
+  name: "Weather App",
+  description: "Responsive weather application with real-time weather data, city search, geolocation detection, and a 5-day forecast — powered by OpenWeatherMap API.",
+  tech: ["React", "TypeScript", "Tailwind CSS", "OpenWeatherMap API"],
+  github: "https://github.com/Onyinye-Maggie/weather-app",
+  live: "https://weatherappforecasts.netlify.app",
+  featured: true,
+},
+  {
+    id: "03",
     name: "Biz-Connect",
     description: "Business discovery platform connecting customers with small businesses — listings, search, filtering, verified badges, and a subscription model.",
     tech: ["React", "Tailwind CSS", "Context API", "React Router", "Node.js"],
@@ -18,7 +27,7 @@ export const projects = [
     featured: true,
   },
   {
-    id: "03",
+    id: "04",
     name: "ShopHub",
     description: "Dynamic e-commerce platform with product rendering, real-time cart state management, filtering, and a conversion-focused UI.",
     tech: ["React", "Tailwind CSS", "JavaScript ES6+"],
@@ -27,7 +36,7 @@ export const projects = [
     featured: false,
   },
   {
-    id: "04",
+    id: "05",
     name: "E-Commerce System",
     description: "Core e-commerce logic — add to cart, cart state management, and full checkout flow.",
     tech: ["React", "Context API", "CSS"],
@@ -36,7 +45,7 @@ export const projects = [
     featured: false,
   },
   {
-    id: "05",
+    id: "06",
     name: "Productivity Hub",
     description: "Multi-module productivity dashboard — task management, expense tracking, study planning, and job application tracking with persistent storage.",
     tech: ["React", "Local Storage", "Dark Mode"],
@@ -45,7 +54,7 @@ export const projects = [
     featured: false,
   },
   {
-    id: "06",
+    id: "07",
     name: "Tech Startup Landing Page",
     description: "Modern landing page with animated feature cards, pricing section, auto-rotating testimonial slider, and mobile nav with dark mode toggle.",
     tech: ["HTML5", "CSS3", "JavaScript"],
@@ -54,7 +63,7 @@ export const projects = [
     featured: false,
   },
   {
-    id: "07",
+    id: "08",
     name: "Hairdresser Landing Page",
     description: "Responsive landing page for a hairdressing brand showcasing services, pricing, and contact/booking details.",
     tech: ["HTML5", "CSS3", "JavaScript"],
